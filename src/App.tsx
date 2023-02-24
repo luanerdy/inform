@@ -1,13 +1,14 @@
 import React from 'react'
-import icon from '@/assets/icons/icon.svg'
-import logo from '@/assets/images/logo.svg'
+import { Login } from './pages/login'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
+const router = createBrowserRouter([
+	{
+		path: '/',
+		element: <Login />,
+	},
+])
 
 export const App = () => {
-	return (
-		<div className=''>
-			<img width={50} src={icon} alt="Icon" />
-			<br />
-			<img width={250} src={logo} alt="Logo" />
-		</div>
-	)
+	return <RouterProvider router={router} />
 }

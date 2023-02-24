@@ -5,9 +5,10 @@ module.exports = {
 		screens: {
 			xs: '320px',
 			sm: '480px',
-			md: '768px',
-			lg: '976px',
-			xl: '1440px',
+			md: '584px',
+			lg: '768px',
+			xl: '976px',
+			'2xl': '1440px',
 		},
 		fontFamily: {
 			headers: ['Oleo Script', 'sans-serif'],

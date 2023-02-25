@@ -23,6 +23,9 @@ module.exports = {
 					700: '#8F0000',
 					900: '#4B0000',
 				},
+				google: {
+					blue: '#4185F4',
+				},
 			},
 			spacing: {
 				112: '28rem',

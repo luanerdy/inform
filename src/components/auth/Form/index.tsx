@@ -7,7 +7,7 @@ interface Props
 export const Form = (props: Props) => {
 	return (
 		<form
-			className="flex flex-col items-center justify-center gap-14 md:bg-white md:bg-opacity-50 rounded-3xl w-112 h-144 max-h-screen"
+			className="flex flex-col items-center justify-center gap-8 bg-white bg-opacity-75 md:rounded-3xl w-full md:w-112 h-full md:h-144 max-h-screen"
 			{...props}
 		>
 			{props.children}

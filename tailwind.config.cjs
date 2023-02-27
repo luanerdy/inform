@@ -26,6 +26,12 @@ module.exports = {
 				google: {
 					blue: '#4185F4',
 				},
+				toast: {
+					success: '#4BB543',
+					error: '#FF3333',
+					warning: '#EED202',
+					info: '#24A0ED',
+				},
 			},
 			spacing: {
 				112: '28rem',

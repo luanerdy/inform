@@ -139,7 +139,6 @@ export const Cadastro = () => {
 					<Divider />
 					<GoogleButton
 						disabled={loading}
-						hideIcon={loading}
 						type="button"
 						onClick={handleGoogle}
 					>

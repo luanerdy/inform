@@ -120,7 +120,6 @@ export const Login = () => {
 					<Divider />
 					<GoogleButton
 						disabled={loading}
-						hideIcon={loading}
 						type="button"
 						onClick={handleGoogle}
 					>

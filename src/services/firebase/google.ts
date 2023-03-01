@@ -15,8 +15,9 @@ export const signin = async () => {
 		const result = isMobile
 			? await signInWithRedirect(auth, provider)
 			: await signInWithPopup(auth, provider)
-		const credential = GoogleAuthProvider.credentialFromResult(result)
-		const token = credential?.accessToken
+		const token = await result.user.getIdToken()
+		
+		if(!token) throw new Error('Token ausente')
 
 		return {
 			token,

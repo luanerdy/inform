@@ -12,8 +12,14 @@ import * as mail from '@/services/firebase/mail'
 import { useChange } from '@/hooks/useChange'
 import { emailRegEx } from '@/utils/regex'
 import { useGoogle } from '@/hooks/useGoogle'
+import { useToast } from '@/hooks/useToast'
+import { validate } from '@/services/api/auth'
+import { setToken } from '@/helpers/token'
+import { useNavigate } from 'react-router-dom'
+import { ThreeDots } from 'react-loader-spinner'
 
 export const Cadastro = () => {
+	const [loading, setLoading] = useState(false)
 	const [info, setInfo] = useState({
 		email: '',
 		password: '',
@@ -22,31 +28,74 @@ export const Cadastro = () => {
 
 	const onChange = useChange(setInfo)
 	const googleSignin = useGoogle()
+	const toast = useToast()
+	const navigate = useNavigate()
 
-	const handleMailSignup = async (event: FormEvent) => {
+	const handleSubmit = async (event: FormEvent) => {
 		event.preventDefault()
+		setLoading(true)
+		await handleSignup()
+		setLoading(false)
+	}
+
+	const handleGoogle = async () => {
+		setLoading(true)
+		await googleSignin()
+		setLoading(false)
+	}
+
+	const handleSignup = async () => {
 		const { confirm_password, password, email } = info
 
-		// TODO -> criar componente de Toast
-		if (!emailRegEx.test(email)) return alert('Email inválido')
-		if (password !== confirm_password) return alert('passwords incompatíveis')
+		if (!emailRegEx.test(email))
+			return toast({
+				title: 'Erro',
+				text: 'Email inválido',
+				type: 'error',
+			})
+		if (password !== confirm_password)
+			return toast({
+				title: 'Erro',
+				text: 'Senhas incompatíveis',
+				type: 'error',
+			})
 
 		const result = await mail.signup(email, password)
 
 		if ('error' in result) {
-			return alert('erro')
+			return toast({
+				title: 'Erro',
+				text: 'Ocorreu um erro',
+				type: 'error',
+			})
 		}
 
-		console.log(result)
-		alert('sucesso')
+		const isValidToken = await validate(result.token)
+
+		if (!isValidToken) {
+			return toast({
+				title: 'Erro',
+				text: 'Token inválido',
+				type: 'error',
+			})
+		}
+
+		setToken(result.token)
+		toast({
+			title: 'Sucesso',
+			text: 'Login efetuado com sucesso',
+			type: 'success',
+		})
+		navigate('/profile')
 	}
 
 	return (
 		<Background>
-			<Form onSubmit={handleMailSignup}>
+			<Form onSubmit={handleSubmit}>
 				<Logo width={250} />
 				<Container>
 					<Input
+						disabled={loading}
 						value={info.email}
 						onChange={(e) => onChange(e.target)}
 						placeholder="Digite o seu email"
@@ -54,6 +103,7 @@ export const Cadastro = () => {
 						name="email"
 					/>
 					<Input
+						disabled={loading}
 						value={info.password}
 						onChange={(e) => onChange(e.target)}
 						placeholder="Crie uma senha"
@@ -63,6 +113,7 @@ export const Cadastro = () => {
 						name="password"
 					/>
 					<Input
+						disabled={loading}
 						value={info.confirm_password}
 						onChange={(e) => onChange(e.target)}
 						placeholder="Repita a senha"
@@ -71,10 +122,39 @@ export const Cadastro = () => {
 						type="password"
 						name="confirm_password"
 					/>
-					<Button type="submit">Cadastrar</Button>
+					<Button type="submit" disabled={loading}>
+						{loading ? (
+							<ThreeDots
+								height="70%"
+								width="80"
+								radius="9"
+								color="#eee"
+								ariaLabel="three-dots-loading"
+								visible={true}
+							/>
+						) : (
+							'Cadastrar'
+						)}
+					</Button>
 					<Divider />
-					<GoogleButton type="button" onClick={googleSignin}>
-						Continuar com Google
+					<GoogleButton
+						disabled={loading}
+						hideIcon={loading}
+						type="button"
+						onClick={handleGoogle}
+					>
+						{loading ? (
+							<ThreeDots
+								height="70%"
+								width="80"
+								radius="9"
+								color="#4B0000"
+								ariaLabel="three-dots-loading"
+								visible={true}
+							/>
+						) : (
+							'Continuar com Google'
+						)}
 					</GoogleButton>
 				</Container>
 				<Link type="entrar" />

@@ -11,7 +11,7 @@ module.exports = {
 			'2xl': '1440px',
 		},
 		fontFamily: {
-			headers: ['Oleo Script', 'sans-serif'],
+			headers: ['Raleway', 'sans-serif'],
 			body: ['Raleway', 'sans-serif'],
 		},
 		extend: {
@@ -34,6 +34,7 @@ module.exports = {
 				},
 			},
 			spacing: {
+				88: '22rem',
 				112: '28rem',
 				128: '32rem',
 				144: '36rem',

@@ -15,7 +15,7 @@ export const Toast = () => {
 	return app.toast.active ? (
 		<div
 			style={{ background: TOAST_COLORS[app.toast.type] }}
-			className="flex flex-col justify-between w-11/12 md:w-88 h-28 rounded-lg fixed top-5 right-5 shadow-lg p-5 text-white"
+			className="flex flex-col justify-between w-11/12 md:w-88 h-28 rounded-lg fixed z-50 top-5 right-5 shadow-lg p-5 text-white"
 		>
 			<span
 				onClick={handleCloseModal}

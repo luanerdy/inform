@@ -5,11 +5,26 @@ import { Cadastro } from './pages/cadastro'
 import { Toast } from './components/Toast'
 import { Provider } from 'react-redux'
 import { store } from './store'
+import { NotFound } from './pages/404'
+import { Profile } from './pages/profile'
+import { Form } from './pages/form'
 
 const router = createBrowserRouter([
 	{
+		path: '*',
+		element: <NotFound />,
+	},
+	{
 		path: '/',
 		element: <Login />,
+	},
+	{
+		path: '/profile',
+		element: <Profile />,
+	},
+	{
+		path: '/form',
+		element: <Form />,
 	},
 	{
 		path: '/cadastro',

@@ -32,9 +32,7 @@ export const Info = () => {
 						<Field title="Estado" text={form?.estado?.label ?? ''} />
 						<Field title="Cidade" text={form?.cidade?.label ?? ''} />
 					</Fieldset>
-					<Area>
-						{draftToHtml(convertToRaw(form.descricao.getCurrentContent()))}
-					</Area>
+					<Area>{draftToHtml(form.descricao)}</Area>
 				</Container>
 			</form>
 		</>

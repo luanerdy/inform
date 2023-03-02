@@ -1,6 +1,6 @@
 import { Option } from '@/@types/form'
 import { createSlice } from '@reduxjs/toolkit'
-import { EditorState } from 'draft-js'
+import { convertToRaw, EditorState, RawDraftContentState } from 'draft-js'
 
 interface Initial {
 	started: boolean
@@ -11,7 +11,7 @@ interface Initial {
 	pais: Option | undefined
 	estado: Option | undefined
 	cidade: Option | undefined
-	descricao: EditorState
+	descricao: RawDraftContentState
 	paises: Option[]
 	estados: Option[]
 	cidades: Option[]
@@ -37,7 +37,7 @@ export const initialState = {
 	pais: undefined,
 	estado: undefined,
 	cidade: undefined,
-	descricao: EditorState.createEmpty(),
+	descricao: convertToRaw(EditorState.createEmpty().getCurrentContent()),
 	paises: [],
 	estados: [],
 	cidades: [],
@@ -84,11 +84,6 @@ const slice = createSlice({
 	},
 } as Slice)
 
-export const {
-	fillForm,
-	startForm,
-	cancelForm,
-	clearForm
-} = slice.actions
+export const { fillForm, startForm, cancelForm, clearForm } = slice.actions
 
 export default slice.reducer

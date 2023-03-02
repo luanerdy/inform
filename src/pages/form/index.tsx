@@ -15,7 +15,7 @@ import { Country, State, City } from 'country-state-city'
 import { fillForm } from '@/store/slices/form'
 import { Save } from '@/components/info/Modal/Save'
 import { openModalSave } from '@/store/slices/app'
-import { EditorState } from 'draft-js'
+import { convertFromRaw, convertToRaw, EditorState } from 'draft-js'
 
 export const Form = () => {
 	const { form, app } = useSelector((state: RootState) => state)
@@ -32,7 +32,7 @@ export const Form = () => {
 		paises: form.paises,
 		estados: form.estados,
 		cidades: form.cidades,
-		descricao: form.descricao,
+		descricao: EditorState.createWithContent(convertFromRaw(form.descricao)),
 	}))
 
 	const navigate = useNavigate()
@@ -56,29 +56,57 @@ export const Form = () => {
 	}
 
 	const handleSendFormInfo = async () => {
-		const data = { ...info, started: true }
-
+		const data = {
+			...info,
+			descricao: convertToRaw(info.descricao.getCurrentContent()),
+			started: true,
+		}
 		// await send to back
-
+		console.log(form)
 		dispatch(fillForm(data))
 	}
 
+	const getCountries = () =>
+		Country.getAllCountries().map(({ isoCode, name }) => ({
+			label: name,
+			value: isoCode,
+		}))
+
+	const getStates = (pais: Option) =>
+		State.getStatesOfCountry(pais.value).map(({ isoCode, name }) => ({
+			label: name,
+			value: isoCode,
+		}))
+
+	const getCities = (pais: Option, estado: Option) =>
+		City.getCitiesOfState(pais.value, estado.value).map(({ name }) => ({
+			label: name,
+			value: name,
+		}))
+
 	useEffect(() => {
 		if (info.paises.length !== 0) return
+		const { pais, estado } = form
 
-		const paises: Option[] = Country.getAllCountries().map(
-			({ isoCode, name }) => ({ label: name, value: isoCode }),
-		)
+		const paises: Option[] = getCountries()
+
+		if(pais) {
+			const estados = getStates(pais)
+			handleChange('estados')(estados)
+		}
+
+		if(pais && estado) {
+			const cidades = getCities(pais, estado)
+			handleChange('cidades')(cidades)
+		}
 
 		handleChange('paises')(paises)
 	}, [])
 
 	useEffect(() => {
-		if (!info.pais) return
+		if (!info.pais || info.pais === form.pais) return
 
-		const estados: Option[] = State.getStatesOfCountry(info.pais.value).map(
-			({ isoCode, name }) => ({ label: name, value: isoCode }),
-		)
+		const estados: Option[] = getStates(info.pais)
 
 		handleChange('estados')(estados)
 
@@ -87,12 +115,14 @@ export const Form = () => {
 	}, [info.pais])
 
 	useEffect(() => {
-		if (!info.pais || !info.estado) return
+		if (
+			!info.pais ||
+			!info.estado ||
+			(info.pais === form.pais && info.estado === form.estado)
+		)
+			return
 
-		const cidades: Option[] = City.getCitiesOfState(
-			info.pais.value,
-			info.estado.value,
-		).map(({ name }) => ({ label: name, value: name }))
+		const cidades: Option[] = getCities(info.pais, info.estado)
 
 		handleChange('cidades')(cidades)
 

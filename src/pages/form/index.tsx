@@ -16,6 +16,9 @@ import { fillForm } from '@/store/slices/form'
 import { Save } from '@/components/info/Modal/Save'
 import { openModalSave } from '@/store/slices/app'
 import { convertFromRaw, convertToRaw, EditorState } from 'draft-js'
+import { create, update } from '@/services/api/form'
+import { getToken } from '@/helpers/token'
+import { useToast } from '@/hooks/useToast'
 
 export const Form = () => {
 	const { form, app } = useSelector((state: RootState) => state)
@@ -37,6 +40,7 @@ export const Form = () => {
 
 	const navigate = useNavigate()
 	const onChange = useChange(setInfo)
+	const toast = useToast()
 
 	const handleChange =
 		(name: string) => (value: Option | Option[] | EditorState | undefined) => {
@@ -61,8 +65,26 @@ export const Form = () => {
 			descricao: convertToRaw(info.descricao.getCurrentContent()),
 			started: true,
 		}
-		// await send to back
-		console.log(form)
+
+		const token = getToken() ?? ''
+
+		const result = form.started
+			? await update(token, data)
+			: await create(token, data)
+
+		if (!result)
+			return toast({
+				title: 'Erro',
+				text: 'Não foi possível salvar os dados',
+				type: 'error',
+			})
+
+		toast({
+			title: 'Sucesso',
+			text: 'Dados salvos com sucesso',
+			type: 'success',
+		})
+		
 		dispatch(fillForm(data))
 	}
 
@@ -90,12 +112,12 @@ export const Form = () => {
 
 		const paises: Option[] = getCountries()
 
-		if(pais) {
+		if (pais) {
 			const estados = getStates(pais)
 			handleChange('estados')(estados)
 		}
 
-		if(pais && estado) {
+		if (pais && estado) {
 			const cidades = getCities(pais, estado)
 			handleChange('cidades')(cidades)
 		}

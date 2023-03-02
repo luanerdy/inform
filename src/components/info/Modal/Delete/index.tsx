@@ -1,4 +1,7 @@
 import { Button } from '@/components/Button/Default'
+import { getToken } from '@/helpers/token'
+import { useToast } from '@/hooks/useToast'
+import { remove } from '@/services/api/form'
 import { closeModalDelete } from '@/store/slices/app'
 import { clearForm } from '@/store/slices/form'
 import React from 'react'
@@ -7,17 +10,31 @@ import { Modal } from '..'
 
 export const Delete = () => {
 	const dispatch = useDispatch()
+	const toast = useToast()
 
 	const onClose = () => {
 		dispatch(closeModalDelete({}))
 	}
 
 	const deleteForm = async () => {
-		// chamar endpoint back
+		const result = await remove(getToken() ?? '')
+
+		if (!result)
+			return toast({
+				title: 'Erro',
+				text: 'Não foi possível deletar o formulário',
+				type: 'error',
+			})
 
 		batch(() => {
 			dispatch(closeModalDelete({}))
 			dispatch(clearForm({}))
+		})
+
+		toast({
+			title: 'Sucesso',
+			text: 'Formulário deletado com sucesso',
+			type: 'success',
 		})
 	}
 

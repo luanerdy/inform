@@ -2,7 +2,7 @@ import { Option } from '@/@types/form'
 import { createSlice } from '@reduxjs/toolkit'
 import { convertToRaw, EditorState, RawDraftContentState } from 'draft-js'
 
-interface Initial {
+export interface Initial {
 	started: boolean
 	nome: string
 	email: string

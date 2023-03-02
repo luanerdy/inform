@@ -1,15 +1,14 @@
 import { EditorState } from 'draft-js'
-import React, { useState } from 'react'
+import React from 'react'
 import { Editor as Wysiwyg } from 'react-draft-wysiwyg'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
-export const Editor = () => {
-	const [editorState, setEditorState] = useState(EditorState.createEmpty())
+interface Props {
+	editorState: EditorState
+	onEditorStateChange: (editorState: EditorState) => void
+}
 
-	const onEditorStateChange = (editorState: EditorState) => {
-		setEditorState(editorState)
-	}
-
+export const Editor = ({ editorState, onEditorStateChange }: Props) => {
 	return (
 		<div>
 			<p className="self-start mb-3 text-main-900">Descrição</p>

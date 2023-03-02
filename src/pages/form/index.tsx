@@ -15,6 +15,7 @@ import { Country, State, City } from 'country-state-city'
 import { fillForm } from '@/store/slices/form'
 import { Save } from '@/components/info/Modal/Save'
 import { openModalSave } from '@/store/slices/app'
+import { EditorState } from 'draft-js'
 
 export const Form = () => {
 	const { form, app } = useSelector((state: RootState) => state)
@@ -31,13 +32,14 @@ export const Form = () => {
 		paises: form.paises,
 		estados: form.estados,
 		cidades: form.cidades,
+		descricao: form.descricao,
 	}))
 
 	const navigate = useNavigate()
 	const onChange = useChange(setInfo)
 
 	const handleChange =
-		(name: string) => (value: Option | Option[] | undefined) => {
+		(name: string) => (value: Option | Option[] | EditorState | undefined) => {
 			setInfo((prev) => ({ ...prev, [name]: value }))
 		}
 
@@ -171,7 +173,10 @@ export const Form = () => {
 							options={info.cidades}
 						/>
 					</Fieldset>
-					<Editor />
+					<Editor
+						editorState={info.descricao}
+						onEditorStateChange={handleChange('descricao')}
+					/>
 					<Fieldset reverse>
 						<Button
 							disabled={loading}

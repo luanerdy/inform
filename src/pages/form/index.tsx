@@ -68,6 +68,11 @@ export const Form = () => {
 
 		const token = getToken() ?? ''
 
+		const sendData: Partial<typeof data> = { ...data }
+		delete sendData.cidades
+		delete sendData.estados
+		delete sendData.paises
+
 		const result = form.started
 			? await update(token, data)
 			: await create(token, data)
@@ -84,7 +89,7 @@ export const Form = () => {
 			text: 'Dados salvos com sucesso',
 			type: 'success',
 		})
-		
+
 		dispatch(fillForm(data))
 	}
 

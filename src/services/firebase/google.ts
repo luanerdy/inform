@@ -13,7 +13,7 @@ export const signin = async () => {
 		const result = await signInWithPopup(auth, provider)
 		const token = await result.user.getIdToken()
 
-		console.log(token)
+		// console.log(token)
 
 		if(!token) throw new Error('Token ausente')
 

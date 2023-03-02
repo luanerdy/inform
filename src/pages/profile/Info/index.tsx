@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux'
 import { RootState } from '@/store'
 import { Area } from '@/components/info/Area'
 import draftToHtml from 'draftjs-to-html'
-import { convertToRaw } from 'draft-js'
 import { Delete } from '@/components/info/Modal/Delete'
 
 export const Info = () => {

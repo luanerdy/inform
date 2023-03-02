@@ -1,4 +1,3 @@
-import { isMobile } from '@/utils/device'
 import {
 	getAuth,
 	GoogleAuthProvider,
@@ -13,6 +12,8 @@ export const signin = async () => {
 	try {
 		const result = await signInWithPopup(auth, provider)
 		const token = await result.user.getIdToken()
+
+		console.log(token)
 
 		if(!token) throw new Error('Token ausente')
 

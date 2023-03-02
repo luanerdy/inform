@@ -1,6 +1,4 @@
-import { closeModalDelete } from '@/store/slices/app'
 import React, { PropsWithChildren } from 'react'
-import { useDispatch } from 'react-redux'
 
 interface Props extends PropsWithChildren {
 	title: string

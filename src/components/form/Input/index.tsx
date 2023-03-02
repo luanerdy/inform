@@ -10,7 +10,7 @@ export const Input = forwardRef(
 	(props: Props, ref: ForwardedRef<HTMLInputElement>) => {
 		return (
 			<label className="flex flex-col text-main-900 w-full">
-				<span>{props.title}</span>
+				<span className='font-semibold text-lg'>{props.title}</span>
 				{props.mask ? (
 					<ReactInputMask
 						inputRef={ref}

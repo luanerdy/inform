@@ -18,6 +18,7 @@ export const EmptyWrapper = ({ image, onClick, text }: Props) => {
 						height: '100%',
 						maxHeight: 'calc(90vh - 120px)',
 						maxWidth: '90vw',
+						objectFit: 'contain'
 					}}
 					src={image}
 				/>

@@ -12,11 +12,9 @@ const auth = getAuth(app)
 
 export const signin = async () => {
 	try {
-		const result = isMobile
-			? await signInWithRedirect(auth, provider)
-			: await signInWithPopup(auth, provider)
+		const result = await signInWithPopup(auth, provider)
 		const token = await result.user.getIdToken()
-		
+
 		if(!token) throw new Error('Token ausente')
 
 		return {

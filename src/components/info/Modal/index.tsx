@@ -15,7 +15,7 @@ export const Modal = ({ title, onClose, children }: Props) => {
 		>
 			<div
 				onClick={(e) => e.stopPropagation()}
-				className="flex flex-col justify-between gap-10 relative w-full max-w-sm p-5 h-fit bg-white rounded-xl shadow-2xl"
+				className="flex flex-col justify-between gap-10 relative w-full max-w-sm mx-5 p-5 h-fit bg-white rounded-xl shadow-2xl"
 			>
 				<span
 					className="absolute right-5 top-5 flex justify-center items-center h-5 font-semibold text-5xl cursor-pointer"

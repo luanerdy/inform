@@ -11,7 +11,7 @@ interface Props {
 export const Editor = ({ editorState, onEditorStateChange }: Props) => {
 	return (
 		<div>
-			<p className="self-start mb-3 text-main-900">Descrição</p>
+			<p className="self-start mb-3 text-main-900 font-semibold text-lg">Descrição</p>
 			<Wysiwyg
 				editorState={editorState}
 				editorStyle={{

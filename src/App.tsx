@@ -8,6 +8,7 @@ import { store } from './store'
 import { NotFound } from './pages/404'
 import { Profile } from './pages/profile'
 import { Form } from './pages/form'
+import { Protected } from './components/Protected'
 
 const router = createBrowserRouter([
 	{
@@ -16,19 +17,35 @@ const router = createBrowserRouter([
 	},
 	{
 		path: '/',
-		element: <Login />,
+		element: (
+			<Protected redirect="/profile">
+				<Login />
+			</Protected>
+		),
 	},
 	{
 		path: '/profile',
-		element: <Profile />,
+		element: (
+			<Protected authorized redirect="/">
+				<Profile />
+			</Protected>
+		),
 	},
 	{
 		path: '/form',
-		element: <Form />,
+		element: (
+			<Protected authorized redirect="/">
+				<Form />
+			</Protected>
+		),
 	},
 	{
 		path: '/cadastro',
-		element: <Cadastro />,
+		element: (
+			<Protected redirect="/profile">
+				<Cadastro />
+			</Protected>
+		),
 	},
 ])
 

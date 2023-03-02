@@ -1,5 +1,5 @@
 import { Button } from '@/components/Button/Default'
-import { Header } from '@/components/Header'
+import { Header } from '@/components/global/Header'
 import React from 'react'
 
 interface Props {

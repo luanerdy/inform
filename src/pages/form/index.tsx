@@ -4,7 +4,7 @@ import { Editor } from '@/components/form/Editor'
 import { Fieldset } from '@/components/form/Fieldset'
 import { Input } from '@/components/form/Input'
 import { Select } from '@/components/form/Select'
-import { Header } from '@/components/Header'
+import { Header } from '@/components/global/Header'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -21,8 +21,13 @@ export const Form = () => {
 						<Input name="Email" placeholder="Digite um email válido" />
 					</Fieldset>
 					<Fieldset>
-						<Input name="CPF" placeholder="Digite seu CPF (somente números)" />
 						<Input
+							mask="999.999.999-99"
+							name="CPF"
+							placeholder="Digite seu CPF (somente números)"
+						/>
+						<Input
+							mask="99/99/9999"
 							name="Data de nascimento"
 							placeholder="Data no formato dd/mm/aaaa"
 						/>

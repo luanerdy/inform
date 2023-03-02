@@ -1,6 +1,6 @@
 import React, { useState, FormEvent } from 'react'
-import { Logo } from '@/components/Logo'
-import { Input } from '@/components/Input'
+import { Logo } from '@/components/global/Logo'
+import { Input } from '@/components/global/Input'
 import { Button } from '@/components/Button/Default'
 import { Background } from '@/components/auth/Background'
 import { Form } from '@/components/auth/Form'

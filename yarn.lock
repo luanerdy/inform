@@ -1024,6 +1024,13 @@
     "@types/react" "*"
     immutable "~3.7.4"
 
+"@types/draftjs-to-html@^0.8.1":
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/@types/draftjs-to-html/-/draftjs-to-html-0.8.1.tgz#0800a4f6ff19ece49b6a337bfa8b39ed3d08a5fa"
+  integrity sha512-NBkphQs+qZ/sAz/j1pCUaxkPAOx00LTsE88aMSSfcvK+UfCpjHJDqIMCkm6wKotuJvY5w0BtdRazQ0sAaXzPdg==
+  dependencies:
+    "@types/draft-js" "*"
+
 "@types/hoist-non-react-statics@^3.3.1":
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#1124aafe5118cb591977aeb1ceaaed1070eb039f"
@@ -1031,6 +1038,13 @@
   dependencies:
     "@types/react" "*"
     hoist-non-react-statics "^3.3.0"
+
+"@types/html-to-draftjs@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@types/html-to-draftjs/-/html-to-draftjs-1.4.0.tgz#bfd712d3c5993e0644b76d2654adeae214678fae"
+  integrity sha512-w7Te62TAk2xkl+f/PRepVfaVbsArRYRACqH7Rv9H97gKqglQye3Cf8EArsKuSsN7vW6/zf1kTCsm/jnSR0gDQA==
+  dependencies:
+    "@types/draft-js" "*"
 
 "@types/json-schema@^7.0.9":
   version "7.0.11"
@@ -1075,6 +1089,13 @@
   integrity sha512-wasD1t78JDmQvdPDRPf/mf5FSHMlncunW0F6KMOKB3awzi3Wi21yHMGsRAUOkfTr3R8F+yceG8fSLz0kYWu/QA==
   dependencies:
     "@types/draft-js" "*"
+    "@types/react" "*"
+
+"@types/react-input-mask@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@types/react-input-mask/-/react-input-mask-3.0.2.tgz#60df645cdb2415c97a8f97316011eb3ede78dc1e"
+  integrity sha512-WTli3kUyvUqqaOLYG/so2pLqUvRb+n4qnx2He5klfqZDiQmRyD07jVIt/bco/1BrcErkPMtpOm+bHii4Oed6cQ==
+  dependencies:
     "@types/react" "*"
 
 "@types/react-transition-group@^4.4.0":
@@ -1669,6 +1690,11 @@ draft-js@^0.11.7:
     fbjs "^2.0.0"
     immutable "~3.7.4"
     object-assign "^4.1.1"
+
+draftjs-to-html@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/draftjs-to-html/-/draftjs-to-html-0.9.1.tgz#1c870fbb588d2390204cb4d0ee7e04ad0c709969"
+  integrity sha512-fFstE6+IayaVFBEvaFt/wN8vdj8FsTRzij7dy7LI9QIwf5LgfHFi9zSpvCg+feJ2tbYVqHxUkjcibwpsTpgFVQ==
 
 draftjs-utils@^0.10.2:
   version "0.10.2"

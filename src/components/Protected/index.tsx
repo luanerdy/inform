@@ -1,7 +1,6 @@
 import { getToken, removeToken } from '@/helpers/token'
 import { validate } from '@/services/api/auth'
 import React, {
-	PropsWithChildren,
 	ReactElement,
 	useEffect,
 	useState,

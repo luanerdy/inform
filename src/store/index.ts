@@ -5,8 +5,12 @@ import form from './slices/form'
 export const store = configureStore({
 	reducer: {
 		app,
-		form
+		form,
 	},
+	middleware: (getDefaultMiddleware) =>
+		getDefaultMiddleware({
+			serializableCheck: false,
+		}),
 })
 
 export type RootState = ReturnType<typeof store.getState>

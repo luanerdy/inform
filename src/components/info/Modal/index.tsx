@@ -4,14 +4,10 @@ import { useDispatch } from 'react-redux'
 
 interface Props extends PropsWithChildren {
 	title: string
+	onClose: () => void
 }
 
-export const Modal = ({ title, children }: Props) => {
-	const dispatch = useDispatch()
-	const onClose = () => {
-		dispatch(closeModalDelete({}))
-	}
-
+export const Modal = ({ title, onClose, children }: Props) => {
 	return (
 		<div
 			onClick={onClose}

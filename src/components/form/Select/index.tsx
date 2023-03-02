@@ -4,12 +4,21 @@ import ReactSelect from 'react-select'
 
 interface Props {
 	name: string
+	disabled: boolean
+	value: Option | undefined
 	placeholder: string
-	onChange: () => void
+	onChange: any
 	options: Option[]
 }
 
-export const Select = ({ name, onChange, options, placeholder }: Props) => {
+export const Select = ({
+	name,
+	onChange,
+	options,
+	value,
+	disabled,
+	placeholder,
+}: Props) => {
 	return (
 		<ReactSelect
 			styles={{
@@ -27,7 +36,7 @@ export const Select = ({ name, onChange, options, placeholder }: Props) => {
 				}),
 				singleValue: (base) => ({
 					...base,
-					color: 'white',
+					color: '#4B0000',
 				}),
 				placeholder: (base) => ({
 					...base,
@@ -41,6 +50,8 @@ export const Select = ({ name, onChange, options, placeholder }: Props) => {
 					color: '#4B0000',
 				}),
 			}}
+			isDisabled={disabled}
+			value={value}
 			options={options}
 			name={name}
 			onChange={onChange}

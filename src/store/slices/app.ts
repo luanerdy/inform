@@ -8,8 +8,9 @@ interface Initial {
 		title: string
 		text: string
 	}
-	modalDelete: {
-		open: boolean
+	modal: {
+		delete: boolean
+		save: boolean
 	}
 }
 
@@ -31,8 +32,9 @@ export const initialState = {
 		title: 'Sucesso',
 		text: 'Mensagem de sucesso',
 	},
-	modalDelete: {
-		open: false,
+	modal: {
+		delete: false,
+		save: false,
 	},
 }
 
@@ -47,10 +49,16 @@ const slice = createSlice({
 			state.toast.active = false
 		},
 		openModalDelete: (state) => {
-			state.modalDelete.open = true
+			state.modal.delete = true
 		},
 		closeModalDelete: (state) => {
-			state.modalDelete.open = false
+			state.modal.delete = false
+		},
+		openModalSave: (state) => {
+			state.modal.save = true
+		},
+		closeModalSave: (state) => {
+			state.modal.save = false
 		},
 		changeToastContent: (state, { payload }) => {
 			state.toast = {
@@ -70,6 +78,8 @@ export const {
 	changeToastContent,
 	openModalDelete,
 	closeModalDelete,
+	openModalSave,
+	closeModalSave,
 } = slice.actions
 
 export default slice.reducer

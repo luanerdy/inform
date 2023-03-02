@@ -3,13 +3,14 @@ import ReactInputMask from 'react-input-mask'
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
 	mask?: string
+	title: string
 }
 
 export const Input = forwardRef(
 	(props: Props, ref: ForwardedRef<HTMLInputElement>) => {
 		return (
 			<label className="flex flex-col text-main-900 w-full">
-				<span>{props.name}</span>
+				<span>{props.title}</span>
 				{props.mask ? (
 					<ReactInputMask
 						inputRef={ref}

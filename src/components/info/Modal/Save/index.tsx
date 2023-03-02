@@ -1,30 +1,29 @@
 import { Button } from '@/components/Button/Default'
-import { closeModalDelete } from '@/store/slices/app'
-import { clearForm } from '@/store/slices/form'
+import { closeModalSave } from '@/store/slices/app'
 import React from 'react'
-import { batch, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Modal } from '..'
 
-export const Delete = () => {
+interface Props {
+	onSave: () => void
+}
+
+export const Save = ({ onSave }: Props) => {
 	const dispatch = useDispatch()
 
 	const onClose = () => {
-		dispatch(closeModalDelete({}))
+		dispatch(closeModalSave({}))
 	}
 
-	const deleteForm = async () => {
-		// chamar endpoint back
-
-		batch(() => {
-			dispatch(closeModalDelete({}))
-			dispatch(clearForm({}))
-		})
+	const saveForm = async () => {
+		onSave()
+		dispatch(closeModalSave({}))
 	}
 
 	return (
 		<Modal onClose={onClose} title="Atenção!">
 			<p className="self-center text-main-900 font-medium">
-				Deseja excluir o formulário?
+				Deseja salvar as informações?
 			</p>
 			<div className="flex gap-5 items-center justify-between">
 				<Button
@@ -33,8 +32,8 @@ export const Delete = () => {
 				>
 					Cancelar
 				</Button>
-				<Button style={{ flex: 1 }} onClick={deleteForm}>
-					Excluir
+				<Button style={{ flex: 1 }} onClick={saveForm}>
+					Salvar
 				</Button>
 			</div>
 		</Modal>

@@ -15,7 +15,6 @@ export const Editor = () => {
 			<p className="self-start mb-3 text-main-900">Descrição</p>
 			<Wysiwyg
 				editorState={editorState}
-				// wrapperStyle={}
 				editorStyle={{
 					minHeight: '20vh',
 					maxHeight: '40vh',

@@ -1,10 +1,8 @@
 import { Container } from '@/components/info/Container'
-import { Editor } from '@/components/form/Editor'
 import { Fieldset } from '@/components/form/Fieldset'
 import { Field } from '@/components/info/Field'
 import { Header } from '@/components/global/Header'
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/store'
 import { Area } from '@/components/info/Area'
@@ -18,7 +16,7 @@ export const Info = () => {
 	return (
 		<>
 			<Header />
-			{app.modalDelete.open ? <Delete /> : <></>}
+			{app.modal.delete ? <Delete /> : <></>}
 			<form className="flex justify-center w-screen pt-24 pb-8 px-5">
 				<Container>
 					<Fieldset>
@@ -30,9 +28,9 @@ export const Info = () => {
 						<Field title="Data de nascimento" text={form.nascimento} />
 					</Fieldset>
 					<Fieldset>
-						<Field title="País" text={form.pais} />
-						<Field title="Estado" text={form.estado} />
-						<Field title="Cidade" text={form.cidade} />
+						<Field title="País" text={form?.pais?.label ?? ''} />
+						<Field title="Estado" text={form?.estado?.label ?? ''} />
+						<Field title="Cidade" text={form?.cidade?.label ?? ''} />
 					</Fieldset>
 					<Area>
 						{draftToHtml(convertToRaw(form.descricao.getCurrentContent()))}

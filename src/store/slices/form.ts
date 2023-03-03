@@ -1,29 +1,14 @@
-import { Option } from '@/@types/form'
+import { InitialForm } from '@/@types/form'
 import { createSlice } from '@reduxjs/toolkit'
-import { convertToRaw, EditorState, RawDraftContentState } from 'draft-js'
-
-export interface Initial {
-	started: boolean
-	nome: string
-	email: string
-	cpf: string
-	nascimento: string
-	pais: Option | undefined
-	estado: Option | undefined
-	cidade: Option | undefined
-	descricao: RawDraftContentState
-	paises: Option[]
-	estados: Option[]
-	cidades: Option[]
-}
+import { convertToRaw, EditorState } from 'draft-js'
 
 interface Slice {
 	name: string
-	initialState: Initial
+	initialState: InitialForm
 	reducers: {
 		[key: string]: (
-			state: Initial,
-			action: { type: string; payload: Partial<Initial> },
+			state: InitialForm,
+			action: { type: string; payload: Partial<InitialForm> },
 		) => void
 	}
 }

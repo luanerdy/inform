@@ -1,4 +1,4 @@
-import { Option } from '@/@types/form'
+import { Option, SendData } from '@/@types/form'
 import { Button } from '@/components/Button/Default'
 import { Container } from '@/components/form/Container'
 import { Editor } from '@/components/form/Editor'
@@ -15,7 +15,7 @@ import { Country, State, City } from 'country-state-city'
 import { fillForm } from '@/store/slices/form'
 import { Save } from '@/components/info/Modal/Save'
 import { openModalSave } from '@/store/slices/app'
-import { convertFromRaw, convertToRaw, EditorState } from 'draft-js'
+import { convertFromRaw, convertToRaw, EditorState, RawDraftContentState } from 'draft-js'
 import { create, update } from '@/services/api/form'
 import { getToken } from '@/helpers/token'
 import { useToast } from '@/hooks/useToast'
@@ -68,14 +68,12 @@ export const Form = () => {
 
 		const token = getToken() ?? ''
 
-		const sendData: Partial<typeof data> = { ...data }
-		delete sendData.cidades
-		delete sendData.estados
-		delete sendData.paises
+		const sendData: SendData = { ...data }
+		sendData.descricao = JSON.stringify(sendData.descricao)
 
 		const result = form.started
-			? await update(token, data)
-			: await create(token, data)
+			? await update(token, sendData)
+			: await create(token, sendData)
 
 		if (!result)
 			return toast({

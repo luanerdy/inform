@@ -2,7 +2,6 @@ import { getToken } from '@/helpers/token'
 import { get } from '@/services/api/form'
 import { RootState } from '@/store'
 import { fillForm } from '@/store/slices/form'
-import { convertToRaw } from 'draft-js'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Empty } from './Empty'
@@ -17,7 +16,7 @@ export const Profile = () => {
 
 		if (!data) return
 
-		dispatch(fillForm({ ...data, descricao: convertToRaw(data.descricao) }))
+		dispatch(fillForm({ ...data, descricao: JSON.parse(data.descricao) }))
 	}
 
 	useEffect(() => {

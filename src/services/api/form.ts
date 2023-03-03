@@ -1,4 +1,4 @@
-import { Initial } from '@/store/slices/form'
+import { SendData } from '@/@types/form'
 import { api } from '.'
 
 export const get = async (token: string) => {
@@ -14,7 +14,7 @@ export const get = async (token: string) => {
 	}
 }
 
-export const create = async (token: string, info: Initial) => {
+export const create = async (token: string, info: SendData) => {
 	try {
 		if(!token) throw new Error()
 
@@ -27,7 +27,7 @@ export const create = async (token: string, info: Initial) => {
 	}
 }
 
-export const update = async (token: string, info: Initial) => {
+export const update = async (token: string, info: SendData) => {
 	try {
 		if(!token) throw new Error()
 

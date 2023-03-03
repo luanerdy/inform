@@ -53,7 +53,7 @@ const slice = createSlice({
 			state.cidades = payload.cidades ?? []
 		},
 		clearForm: (state) => {
-			state.started = initialState.started
+			state.started = false
 			state.nome = initialState.nome
 			state.email = initialState.email
 			state.cpf = initialState.cpf

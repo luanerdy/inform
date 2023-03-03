@@ -1,8 +1,14 @@
-# InForm
+![Print](./src/assets/images/logo.svg)
+___
+___
 
 [Clique aqui para acessar o projeto](https://inform-ten.vercel.app)
 
-![Print](./public/print.jpg)
+![Print](./public/print.png)
+
+### Aplicação para guardar dados em um formulário com possibilidade de fazer uma descrição personalizada num editor `Rich Text`
+
+___
 
 ## Algumas das tecnologias utilizadas
 
@@ -40,12 +46,22 @@
   </details>
 * <details>
     <summary>
-      Styled Components
+      Redux
     </summary>
     <p>
-      Facilita a criação dos estilos para os componentes, permitindo a utilização de JavaScript para gerar CSS, além da utilização de props para personalizar os estilos dos componentes.
+      Facilita o gerenciamento de estados globais permitindo o acesso e alteração dos estados de forma performática.
     </p>
   </details>
+* <details>
+    <summary>
+      Tailwind
+    </summary>
+    <p>
+      Biblioteca CSS que adiciona inúmeras classes com estilos pré-definidos facilmente moldáveis, agilizando a estilização dos componentes e páginas.
+    </p>
+  </details>
+
+___
 
 ## Como rodar o projeto
 
@@ -59,6 +75,7 @@
   * `git clone <url-do-repo>`
 * Instale as dependências:
   * `npm install`
+* Crie um arquivo `.env.local` duplicando o `.env.example` e preencha com os dados do firebase
 * Execute o script de dev:
   * `npm run dev`
 * Para acessar o projeto pela rede local, utilize a flag --host:

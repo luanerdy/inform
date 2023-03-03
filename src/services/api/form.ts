@@ -3,7 +3,9 @@ import { api } from '.'
 
 export const get = async (token: string) => {
 	try {
-		const { data } = await api.get('/form', {
+		if(!token) throw new Error()
+
+		const { data } = await api.get('/form/', {
 			headers: { Authorization: `Bearer ${token}` },
 		})
 		return data
@@ -14,7 +16,9 @@ export const get = async (token: string) => {
 
 export const create = async (token: string, info: Initial) => {
 	try {
-		await api.post('/form', info, {
+		if(!token) throw new Error()
+
+		await api.post('/form/', info, {
 			headers: { Authorization: `Bearer ${token}` },
 		})
 		return true
@@ -25,7 +29,9 @@ export const create = async (token: string, info: Initial) => {
 
 export const update = async (token: string, info: Initial) => {
 	try {
-		await api.patch('/form', info, {
+		if(!token) throw new Error()
+
+		await api.patch('/form/', info, {
 			headers: { Authorization: `Bearer ${token}` },
 		})
 		return true
@@ -36,7 +42,9 @@ export const update = async (token: string, info: Initial) => {
 
 export const remove = async (token: string) => {
 	try {
-		await api.delete('/form', {
+		if(!token) throw new Error()
+
+		await api.delete('/form/', {
 			headers: { Authorization: `Bearer ${token}` },
 		})
 		return true

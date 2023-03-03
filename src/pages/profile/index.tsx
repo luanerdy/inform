@@ -1,7 +1,8 @@
+import { Loading } from '@/components/global/Loading'
 import { getToken } from '@/helpers/token'
 import { get } from '@/services/api/form'
 import { RootState } from '@/store'
-import { fillForm } from '@/store/slices/form'
+import { cancelForm, fillForm } from '@/store/slices/form'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Empty } from './Empty'
@@ -14,7 +15,7 @@ export const Profile = () => {
 	const getForm = async () => {
 		const data = await get(getToken() ?? '')
 
-		if (!data) return
+		if (!data) return dispatch(cancelForm({}))
 
 		dispatch(fillForm({ ...data, descricao: JSON.parse(data.descricao) }))
 	}
@@ -22,6 +23,8 @@ export const Profile = () => {
 	useEffect(() => {
 		getForm()
 	}, [])
+
+	if (form.started === undefined) return <Loading />
 
 	return <>{form.started ? <Info /> : <Empty />}</>
 }

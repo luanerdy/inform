@@ -14,7 +14,7 @@ interface Slice {
 }
 
 export const initialState = {
-	started: false,
+	started: undefined,
 	nome: '',
 	email: '',
 	cpf: '',

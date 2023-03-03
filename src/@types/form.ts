@@ -1,7 +1,7 @@
 import { RawDraftContentState } from 'draft-js'
 
 export interface InitialForm {
-	started: boolean
+	started: boolean | undefined
 	nome: string
 	email: string
 	cpf: string
